@@ -1,11 +1,13 @@
 {
-  "name": "one-dark-ui",
+  "name": "visual-studio-code-atom-ui",
   "theme": "ui",
-  "version": "1.1.5",
-  "description": "Atom One dark UI theme",
+  "version": "0.4",
+  "description": "The real experience of Visual Studio Code, now in Atom.",
   "keywords": [
-    "dark",
-    "adaptive",
+    "visual",
+    "atudio",
+    "code",
+    "theme",
     "ui"
   ],
   "license": "MIT",
