@@ -1,1 +1,1 @@
-See https://github.com/atom/one-dark-ui/releases
+See https://github.com/Zeioth/atom-visual-studio-code-ui/releases

@@ -2,10 +2,16 @@
 @status-bar-padding: @ui-padding;
 
 .status-bar {
-  font-size: @ui-size;
+  font-size: 0.97em;
   height: @status-bar-height;
   line-height: @status-bar-height;
-  background-color: @level-3-color;
+  z-index: 999;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #007ACC;
+  font-weight: bold;
 
   .flexbox-repaint-hack {
     padding: 0 @status-bar-padding/2;
@@ -14,6 +20,10 @@
   .inline-block {
     margin-right: @status-bar-padding;
     vertical-align: top;
+  }
+
+  span, a, a.inline-block{
+    color: white;
   }
 
   .status-bar-right {

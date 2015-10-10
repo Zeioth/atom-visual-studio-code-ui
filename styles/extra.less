@@ -1,0 +1,36 @@
+.tool-bar {
+  background-color: #333333;
+  border: 0px solid #333333;
+  color: #333333;
+
+  button.tool-bar-btn {
+    background-color: #333333;
+    background-image: #333333;
+    border-color: #333333;
+    &:hover {
+      border-color: white;
+    }
+  }
+
+  &.tool-bar-16px {
+    .tool-bar-size(16px * 2);
+  }
+  &.tool-bar-24px {
+    .tool-bar-size(24px * 2);
+  }
+  &.tool-bar-32px {
+    .tool-bar-size(32px * 2);
+  }
+
+  // Size monkey patched
+  .tool-bar-size(@size) {
+    .tool-bar-btn {
+      height: @size;
+      width: @size * 0.85;
+      &:before {
+        font-size: @size / 1.9;
+        line-height: @size;
+      }
+    }
+  }
+}

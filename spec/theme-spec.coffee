@@ -1,7 +1,7 @@
-describe "One Dark UI theme", ->
+describe "Atom Visual Studio Code UI theme", ->
   beforeEach ->
     waitsForPromise ->
-      atom.packages.activatePackage('one-dark-ui')
+      atom.packages.activatePackage('atom-visual-studio-code-ui')
 
   it "allows the font size to be set via config", ->
     expect(document.documentElement.style.fontSize).toBe ''

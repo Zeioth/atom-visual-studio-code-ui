@@ -12,7 +12,6 @@ atom-text-editor[mini] {
   border-radius: @component-border-radius;
   color: @text-color-highlight;
   border: 1px solid @input-border-color;
-  background-color: @input-background-color;
 
   &,
   &::shadow {
@@ -36,4 +35,8 @@ atom-text-editor[mini] {
       background-color: @input-selection-color-focus;
     }
   }
+}
+
+atom-text-editor .gutter, atom-text-editor::shadow .gutter {
+  background: transparent;
 }

@@ -1,48 +1,76 @@
-## One dark UI theme [![Build Status](https://travis-ci.org/atom/one-dark-ui.svg?branch=master)](https://travis-ci.org/atom/one-dark-ui)
+## Atom Visual Studio Code UI theme [![Build Status](https://travis-ci.org/atom/one-dark-ui.svg?branch=master)](https://travis-ci.org/atom/one-dark-ui)
 
-A dark UI theme that adjusts to most Syntax themes.
+The experience of Visual Studio Code, now in Atom.
 
-![one-dark-ui](https://cloud.githubusercontent.com/assets/378023/6979859/96e416e8-da24-11e4-995c-00dcd84c276d.png)
-
-> The font used in the screenshots is [Fira Mono](https://github.com/mozilla/Fira). Icons by [file-icons](https://atom.io/packages/file-icons).
-
-### Combine with other Syntax themes
-
-There is a matching [Syntax theme](https://atom.io/themes/one-dark-syntax), but most other Syntax themes work fine as well.
-
-![one-dark-ui + sepia](https://cloud.githubusercontent.com/assets/378023/6979865/af2d59da-da24-11e4-8ab6-974c50534b86.png)
-> One dark + [Sepia](https://atom.io/themes/sepia-syntax)
-
-![one-dark-ui chester](https://cloud.githubusercontent.com/assets/378023/6979876/cd0fca64-da24-11e4-9006-4f7e1ff80cad.png)
-> One dark + [Chester](https://atom.io/themes/chester-atom-syntax)
+![atom-visual-studio-code-ui](https://cloud.githubusercontent.com/assets/3357792/10409519/4a0a6c88-6f24-11e5-9316-95405d82038b.png)
 
 ### Install
 
-This theme is installed by default with Atom and can be activated by going to the __Settings > Themes__ section and selecting "One Dark" from the __UI Themes__ drop-down menu.
+You can install it using Atom under __Settings > Install__ and can be activated by going to the __Settings > Themes__ section and selecting "Atom Visual Studio Code" from the __UI Themes__ drop-down menu.
 
-### Settings
+### Install your toolbar
 
-In the theme settings you can switch between 3 __Layout Modes__:
+After installing this theme you'll only have the color scheme of __Visual Studio Code__. To enjoy the full experience you must install the next packages.
 
-1. `Auto` (default) - In Auto mode, the UI and font size will automatically change based on the window size.
-2. `Compact` - The UI stays compact to leave more space for the editor.
-3. `Spacious` - The UI is expanded, giving some breathing room.
+1. `tool-bar` by Suda - This will enable the sidebar. You can set the position to left.
+2. `Flex-tool-bar` - It will allow us to configure the elements of the tool-bar.
 
-As well as change the __Font Size__ to scale the whole UI up or down.
+This theme will modify the color scheme of this packages to match Visual Studio Code.
 
-### Customize
+### Customize your toolbar
 
-It's also possible to resize only certain areas by adding the following to your `styles.less` (Use the DevTools to find the right selectors):
+To set the items of the toolbar, you must press right click in the toolbar and select "Edit toolbar". Then paste this code and save it. You should see the changes immediately.
 
-```css
-.theme-one-dark-ui {
-  .tab-bar { font-size: 18px; }
-  .tree-view { font-size: 14px; }
-  .status-bar { font-size: 12px; }
-}
+```json
+[
+  {
+    type: "button"
+    iconset: "ion"
+    icon: "ios-copy"
+    callback: "tree-view:toggle"
+    tooltip: "Toggle Project Tree"
+  }
+  {
+    type: "button"
+    iconset: "fa"
+    icon: "columns"
+    tooltip: "Split Screen"
+    callback: ["pane:split-right"]
+  }
+  {
+    type: "button"
+    iconset: "devicon"
+    icon: "git-plain"
+    callback: "git-plus:menu"
+    tooltip: "Git"
+    style:
+      color: "#0198E1"
+  }
+  {
+    type: "url"
+    iconset: "ion"
+    icon: "bug"
+    url: "http://localhost:8000"
+    tooltip: "Debug Django Project"
+    show: [ "Python", "HTML", "JavaScript" ]
+  }
+]
 ```
 
 ### FAQ
+__Can I custumize this theme?__
+Yes, you can change anything in your styles.less like this:
+```
+.theme-atom-visual-studio-code-ui {
+  atom-text-editor {
+    //background-color: #272822;
+  }
 
-__Why do the colors change when I switch Syntax themes?__
-This UI theme uses the same background color as the choosen Syntax theme. In case that Syntax theme has a light background color, it only uses its hue, but otherwise stays dark. This lets you use dark-light combos.
+  .tree-view {
+    font-size: 1.1em;
+    background-color: #252526;
+  }
+}
+```
+__Something has an incorrect color or size?__
+Go to our Github repository, and open an issue uploading an image of your problem. I will fix it as soon as possible. Also, this theme is based on One Dark UI, so if you need further help, please refer to the documentation of said theme.
