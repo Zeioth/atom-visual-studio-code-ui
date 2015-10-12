@@ -1,21 +1,23 @@
 ## Atom Visual Studio Code UI theme [![Build Status](https://travis-ci.org/atom/one-dark-ui.svg?branch=master)](https://travis-ci.org/atom/one-dark-ui)
 
-The experience of Visual Studio Code, now in Atom.
+![Banner Atom Visual Studio Code UI](https://cloud.githubusercontent.com/assets/3357792/10440872/3af1d882-7143-11e5-9df9-2c1d0aa5e919.png)
 
-![atom-visual-studio-code-ui](https://cloud.githubusercontent.com/assets/3357792/10409519/4a0a6c88-6f24-11e5-9316-95405d82038b.png)
+This theme aims to reproduce the exact feeling of work with Visual Studio Code. So you don't need to renounce to the features of Atom to enjoy a great workflow. It looks even better with monokai syntax.
 
-### Install
+Made by [@Zeioth](https://twitter.com/Zeioth)
 
-You can install it using Atom under __Settings > Install__ and can be activated by going to the __Settings > Themes__ section and selecting "Atom Visual Studio Code" from the __UI Themes__ drop-down menu.
+---
+
+![atom-visual-studio-code-ui](https://cloud.githubusercontent.com/assets/3357792/10440991/538ad92e-7144-11e5-8a93-b4752fa40f2b.png)
 
 ### Install your toolbar
 
-After installing this theme you'll only have the color scheme of __Visual Studio Code__. To enjoy the full experience you must install the next packages.
+After you install this theme you'll only have the color scheme of __Visual Studio Code__. To enjoy the full experience you must install the next packages.
 
-1. `tool-bar` by Suda - This will enable the sidebar. You can set the position to left.
-2. `Flex-tool-bar` - It will allow us to configure the elements of the tool-bar.
+1. `tool-bar` by suda - This will enable the sidebar. You can set the position to left.
+2. `flex-tool-bar` by cakecatz - It will allow us to configure the elements of the tool-bar.
 
-This theme will modify the color scheme of this packages to match Visual Studio Code.
+It's possible you need to restart Atom to see your toolbar.
 
 ### Customize your toolbar
 
@@ -60,17 +62,22 @@ To set the items of the toolbar, you must press right click in the toolbar and s
 ### FAQ
 __Can I custumize this theme?__
 Yes, you can change anything in your styles.less like this:
-```
+```css
 .theme-atom-visual-studio-code-ui {
   atom-text-editor {
-    //background-color: #272822;
-  }
-
-  .tree-view {
-    font-size: 1.1em;
-    background-color: #252526;
+    background-color: #272822;
   }
 }
 ```
 __Something has an incorrect color or size?__
 Go to our Github repository, and open an issue uploading an image of your problem. I will fix it as soon as possible. Also, this theme is based on One Dark UI, so if you need further help, please refer to the documentation of said theme.
+
+__Know bugs:__
+There is a problem with the status bar where you can't read the last line of a text file. To solve this open your style.less and write:
+```css
+.theme-atom-visual-studio-code-ui {
+  .status-bar{
+    position: relative;
+  }
+}
+```
