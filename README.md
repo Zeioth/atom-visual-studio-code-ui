@@ -68,15 +68,8 @@ Yes, you can change anything in your styles.less like this:
   }
 }
 ```
+__My toolbar icons are too small!__
+You can edit the size of the icons in "Preferences > Packages > Tool-bar".
+
 __Something has an incorrect color or size?__
 Go to our Github repository, and open an issue uploading an image of your problem. I will fix it as soon as possible. Also, this theme is based on One Dark UI, so if you need further help, please refer to the documentation of said theme.
-
-__Know bugs:__
-There is a problem with the status bar where you can't read the last line of a text file. To solve this open your style.less and write:
-```css
-.theme-atom-visual-studio-code-ui {
-  .status-bar{
-    position: relative;
-  }
-}
-```
