@@ -16,12 +16,11 @@ After you install this theme you'll only have the color scheme of __Visual Studi
 
 1. `tool-bar` by suda - This will enable the sidebar. You can set the position to left.
 2. `flex-tool-bar` by cakecatz - It will allow us to configure the elements of the tool-bar.
-
-It's possible you need to restart Atom to see your toolbar.
+3. `git-plus` by akonwi - Having this you can run git commands from your toolbar.
 
 ### Customize your toolbar
 
-To set the items of the toolbar, you must press right click in the toolbar and select "Edit toolbar". Then paste this code and save it. You should see the changes immediately.
+You can't see the toolbar yet. To configure it, you must press ctrl+shift+p and write "Flex Tool Bar: Edit Config File". Then paste this code and save it. You should be able to see your new toolbar after restart Atom.
 
 ```json
 [
