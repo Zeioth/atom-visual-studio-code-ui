@@ -2,7 +2,7 @@
 
 ![Banner Atom Visual Studio Code UI](https://cloud.githubusercontent.com/assets/3357792/10440872/3af1d882-7143-11e5-9df9-2c1d0aa5e919.png)
 
-This theme aims to reproduce the exact feeling of work with Visual Studio Code. So you don't need to renounce to the features of Atom to enjoy a great workflow. It looks even better with monokai syntax. If you prefer, there is an [alternative version](https://github.com/Zeioth/atom-visual-studio-code-light-ui) in light colors.
+This theme aims to reproduce the exact feeling of work with Visual Studio Code. So you don't need to renounce to the features of Atom to enjoy a great workflow. It looks even better with monokai syntax. If you prefer, there is an [alternative version](https://atom.io/themes/atom-visual-studio-code-light-ui) in light colors.
 
 Made by [@Zeioth](https://twitter.com/Zeioth)
 
