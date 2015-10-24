@@ -16,10 +16,13 @@
     span, a, a.inline-block{
       color: white;
     }
+    .status-bar-right{
+      color: white;
+    }
   }
 
   // --------- Find and replace -----------
-  div.find-and-replace{
+  .find-and-replace{
     background-color: #252526;
     padding-bottom: 5px;
   }
@@ -44,6 +47,32 @@
   div.terminal-plus.terminal-view{
     background-color: #333333;
   }
+
+  // ----------- Terminal panel -----------
+  div.panel.cli-status.panel-bottom{
+    div.cli-panel-input{
+      background: #252526;
+    }
+    div.cli-panel-body{
+      pre.terminal{
+        border-top-width: 2px;
+        border-top-color:  #252526;
+        color: cyan;
+        background: black;
+      }
+      span.icon-file-directory
+      {
+        color: #FFA726;
+      }
+      span.status-ignored{
+        color: white;
+      }
+      span.icon.file-info.stat-program.icon-file-text{
+        color: white;
+      }
+    }
+  }
+
 
   // --------------- Linter ----------------
   linter-panel{
