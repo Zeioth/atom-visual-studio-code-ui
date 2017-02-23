@@ -39,13 +39,19 @@ html { font-size: @font-size; }
       }
     }
     // make resize-handles fill the space
-    atom-pane-axis.horizontal > atom-pane-resize-handle {
-      width: 8px;
-      margin-left: -4px;
+    atom-pane-resize-handle.horizontal.horizontal {
+      width: initial;
+      &:before {
+        width: 8px;
+        left: -4px;
+      }
     }
-    atom-pane-axis.vertical > atom-pane-resize-handle {
-      height: 8px;
-      margin-top: -4px;
+    atom-pane-resize-handle.vertical.vertical {
+      height: initial;
+      &:before {
+        height: 8px;
+        top: -4px;
+      }
     }
   }
 
