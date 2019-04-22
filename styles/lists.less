@@ -63,6 +63,12 @@
     }
   }
 
+  // Reset icon to allow nesting
+  .icon {
+    display: initial;
+    height: initial;
+  }
+
   // We want to highlight the background of the list items because we dont
   // know their size.
   li.selected {
@@ -84,6 +90,7 @@
       left: auto; right: auto;
       height: @active-icon-size;
       width: @active-icon-size;
+      font-size: @active-icon-size;
     }
     > li:not(.active):before {
       margin-right: @ui-padding-icon;
@@ -115,6 +122,12 @@
 
   .list-group li {
     padding-left: @popover-list-padding;
+  }
+
+  // Un-reset icon in popover lists
+  .icon.icon {
+    display: inline-block;
+    height: inherit;
   }
 }
 

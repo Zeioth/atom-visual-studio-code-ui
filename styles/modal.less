@@ -2,12 +2,24 @@
 @modal-padding: @ui-padding/2 @ui-padding/1.5;
 @modal-width: @ui-size * 50;
 
+atom-panel-container.modal {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+}
+
 atom-panel.modal {
-  width: @ui-size * 50;
-  margin-left: @modal-width/-2;
+  position: relative;
+  width: 100%;
+  max-width: @modal-width;
+  margin: 0 auto;
+  left: initial;
   color: @text-color;
   background-color: transparent;
   padding: @ui-padding/2;
+
+  &.from-top {
+    top: @component-padding * 5;
+  }
 
   atom-text-editor[mini] {
     margin-bottom: @ui-padding/2;
@@ -32,10 +44,15 @@ atom-panel.modal {
         border-bottom: none;
       }
 
-      .status.icon {
+      .icon::before {
+        margin-left: 1px;
+      }
+
+      .icon.status {
         float: right;
         margin-left: @ui-padding-icon;
         &:before {
+          margin-left: 0;
           margin-right: 0;
         }
       }
@@ -46,6 +63,7 @@ atom-panel.modal {
         }
       }
     }
+
   }
 
   .select-list .key-binding {
@@ -62,6 +80,11 @@ atom-panel.modal {
     position: relative; // fixes stacking order
   }
 
+  .command-palette {
+    padding: 1px; // prevents the box-shadow of the input from being cut off
+    background-color: @overlay-background-color;
+  }
+
 
   // Container
   &:before {
@@ -73,8 +96,7 @@ atom-panel.modal {
     bottom: 0;
     z-index: 0;
     background-color: @overlay-background-color;
-    border-top: 1px solid hsla(0,0%,0%,.2);
-    border-radius: 0 0 @component-border-radius*2 @component-border-radius*2;
+    border-radius: @component-border-radius*2;
     box-shadow: 0 6px 12px -2px hsla(0,0%,0%,.4);
   }
 
@@ -90,13 +112,14 @@ atom-panel.modal {
     bottom: 0;
     z-index: -1;
     background: @overlay-backdrop-color;
+    opacity: @overlay-backdrop-opacity;
     backface-visibility: hidden; // fixes scrollbar on retina screens
-    -webkit-animation: overlay-fade .1s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-animation: overlay-fade .24s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   @-webkit-keyframes overlay-fade {
     0% { opacity: 0; }
-    100% { opacity: 1; }
+    100% { opacity: @overlay-backdrop-opacity; }
   }
 
 }

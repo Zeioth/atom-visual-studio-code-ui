@@ -5,7 +5,6 @@
   background: @tree-view-background-color;
 
   .project-root.project-root {
-    padding-top: @ui-padding-pane;
     &:before {
       height: @ui-tab-height;
       background-clip: padding-box;
@@ -15,8 +14,21 @@
     }
   }
 
+  // Selected state
   .selected:before {
-    background: @background-color-highlight;
+    background: @background-color-selected;
+  }
+
+  // Focus + selected state
+  &:focus {
+    .selected.list-item > .name, // files
+    .selected.list-nested-item > .list-item > .name, // folders
+    .selected.list-nested-item > .header:before { // arrow icon
+      color: contrast(@button-background-color-selected);
+    }
+    .selected:before {
+      background: @button-background-color-selected;
+    }
   }
 }
 
@@ -57,31 +69,17 @@
   }
 }
 
-// Active tree-view marker --------------
-
-.tree-view::before {
-  content: "";
-  position: fixed;
-  pointer-events: none;
-  z-index: 1;
-  top: @ui-padding-pane;
-  left: 0;
-  height: @ui-tab-height;
-  bottom: 0;
-  width: 2px;
-  background: @base-accent-color;
-  opacity: 0;
-  transform: scaleY(0);
-  transition: opacity .16s, transform .16s cubic-bezier(.80, 0, .90, .53);
+// Arrow icon
+.list-group,
+.list-tree {
+  .header.header.header.header::before {
+    top: initial;
+    line-height: inherit;
+    height: inherit;
+    vertical-align: top;
+    font-size: inherit;
+  }
 }
-
-[data-show-on-right-side="true"] .tree-view::before {
-  left: auto;
-  right: 0;
-}
-
-.tree-view:focus::before {
-  opacity: 1;
-  transform: scaleY(1);
-  transition: opacity .16s, transform .32s cubic-bezier(0,.6,.2,1);
+.tree-view .project-root-header.project-root-header.project-root-header.project-root-header::before {
+  line-height: @ui-tab-height;
 }

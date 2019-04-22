@@ -1,117 +1,156 @@
-// Compact mode ----------------------------------------------
 
-@theme-layoutmode: ~'theme-@{ui-theme-name}-layoutmode';
+// Theme config
+// This gets changed from the theme settings
 
-// Default
-html { font-size: @font-size; }
+@theme-tabsizing: ~'theme-@{ui-theme-name}-tabsizing';
+@theme-dockButtons: ~'theme-@{ui-theme-name}-dock-buttons';
+@theme-stickyHeaders: ~'theme-@{ui-theme-name}-sticky-headers';
+@theme-closeButton: ~'theme-@{ui-theme-name}-tab-close-button';
 
 
-// Large screen (>= 27")
-@media (min-width: 2560px) {
-  [@{theme-layoutmode}="auto"] { font-size: @font-size + 2px; }
-}
+// Tabs ----------------------------------------------
 
-// Medium screen (>= 20")
-@media (min-width: 1920px) {
-  [@{theme-layoutmode}="auto"] { font-size: @font-size + 1px; }
-}
+@tab-min-width: 7em; // ~ icon + 6 characters
 
-// Small screen (<= 13")
+// Even (default)
 
-.compact-mode() {
-  font-size: @font-size - 1px;
-
-  atom-workspace {
-    padding-right: 0;
-    atom-panel-container.left:empty {
-      padding-left: 0;
+.tab-bar {
+  .tab,
+  .tab.active {
+    flex: 1 1 0;
+    max-width: 22em;
+    min-width: @tab-min-width;
+  }
+  atom-dock & {
+    .tab,
+    .tab.active {
+      max-width: none;
     }
   }
 
-  atom-pane-container {
-    atom-pane {
-      padding-top: 0;
-      padding-right: 0;
-      border-left: 1px solid @base-border-color;
-      border-bottom: 1px solid @base-border-color;
-      .item-views {
-        border: none;
-      }
+  // TODO: Turn this into a config
+  // Truncates the beginning instead
+  // .title.title.title {
+  //   direction: rtl; // change direction
+  // }
+}
+
+
+// Maximum (full width)
+
+[@{theme-tabsizing}="maximum"] .tab-bar {
+  .tab,
+  .tab.active {
+    max-width: none;
+  }
+}
+
+
+// Minimum (show long paths)
+
+[@{theme-tabsizing}="minimum"] .tab-bar {
+  .tab,
+  .tab.active {
+    flex: 0 0 auto;
+    min-width: 2.75em;
+    max-width: @tab-min-width * 3.3;
+  }
+  atom-dock {
+    .tab,
+    .tab.active {
+      max-width: @tab-min-width * 2;
     }
-    // make resize-handles fill the space
-    atom-pane-resize-handle.horizontal.horizontal {
-      width: initial;
-      &:before {
-        width: 8px;
-        left: -4px;
-      }
-    }
-    atom-pane-resize-handle.vertical.vertical {
-      height: initial;
-      &:before {
-        height: 8px;
-        top: -4px;
-      }
+  }
+}
+
+
+// Tabs: close button position  ------------------------------
+
+[@{theme-closeButton}="left"] {
+
+  .tab-bar .tab {
+    .close-icon {
+      right: auto;
+      left: @icon-padding-right;
     }
   }
 
-  .tab-bar {
-    .tab {
-      border-radius: 0;
-    }
-    .tab::before {
-      border-radius: 0;
+}
+
+
+// Hide docks toggle buttons ------------------------------
+
+[@{theme-dockButtons}="hidden"] {
+
+  // Hide docks when not open
+  .atom-dock-inner:not(.atom-dock-open) {
+    display: none;
+  }
+
+  // Hide toggle buttons
+  .atom-dock-toggle-button {
+    display: none;
+  }
+
+}
+
+
+// Sticky Projects ------------------------------
+
+[@{theme-stickyHeaders}="sticky"] {
+
+  .tree-view {
+    .project-root-header {
+      position: sticky;
       top: 0;
-      bottom: 0;
+      z-index: 3;
+      padding-left: 5px;
+      padding-right: 10px;
+      border-bottom: 1px solid @base-border-color;
+      background-color: @tree-view-background-color;
+    }
+    .project-root.project-root {
+      margin-left: -5px;
+      margin-right: -10px;
 
-      .theme-one-dark-ui & {
-        left: 1px;
+      // Disable selection
+      &::before {
+        display: none;
+      }
+
+      // Add selection back
+      &.selected .project-root-header {
+        background-color: @background-color-selected;
+      }
+    }
+    &:focus .selected .project-root-header.project-root-header  {
+      background: @button-background-color-selected;
+    }
+
+    // Fix sticky header from covering auto-revealed files
+    .entry.file.selected {
+      padding-top: @ui-tab-height;
+      margin-top: -@ui-tab-height;
+    }
+
+    // Fix sticky header from covering auto-revealed directories when using up/down keys
+    // for directories, scroll test moves to .header, see https://github.com/atom/tree-view/blob/d2857ad4d7eeb7dad5cf94b33257a8740211480e/lib/tree-view.coffee#L839
+    .entry.directory.selected:not(.project-root) {
+      & > .header {
+        padding-top: @ui-tab-height;
+        margin-top: -@ui-tab-height;
+      }
+      &::before {
+        margin-top: @ui-tab-height;
       }
     }
 
-    .tab:first-of-type::before {
-      left: 0;
+    // Fix above directory is not being clickable
+    .entry.directory:not(.project-root) > .header {
+      z-index: 2;
     }
-    .tab::after {
-      border-top: none;
-      border-radius: 0;
+    .entry.directory.selected:not(.project-root) > .header {
+      z-index: 1;
     }
-    .tab:first-of-type::after {
-      border-left: none;
-    }
-    .tab:last-of-type::after {
-      border-right: none;
-      box-shadow: inset 0 1px 1px hsla(0,0%,100,.06), 1px 0 0 @base-border-color;
-    }
-  }
-
-
-  // tree-view
-  .tree-view-resizer[data-show-on-right-side="true"] {
-    border-left: 1px solid @base-border-color;
-  }
-
-  .tree-view::before {
-    top: 0;
-  }
-
-  .tree-view .project-root.project-root {
-    padding-top: 0;
-    &:before {
-      height: @ui-tab-height;
-    }
-  }
-  .theme-one-dark-ui .tree-view .project-root.project-root::before {
-    border-top: none;
-  }
-}
-
-[@{theme-layoutmode}="compact"] {
-  .compact-mode();
-}
-
-@media (max-width: 1280px), (max-height: 800px) {
-  [@{theme-layoutmode}="auto"] {
-    .compact-mode();
   }
 }
